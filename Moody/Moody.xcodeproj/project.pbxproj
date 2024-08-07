@@ -14,6 +14,7 @@
 		B27F2DD22C6374DF0022743E /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F2DD12C6374DF0022743E /* Mood.swift */; };
 		B27F2DD42C6374FD0022743E /* MoodList.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F2DD32C6374FD0022743E /* MoodList.swift */; };
 		B27F2DD62C6375120022743E /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F2DD52C6375120022743E /* ViewModel.swift */; };
+		B27F2DD82C6394010022743E /* MoodSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B27F2DD72C6394010022743E /* MoodSheetView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		B27F2DD12C6374DF0022743E /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		B27F2DD32C6374FD0022743E /* MoodList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodList.swift; sourceTree = "<group>"; };
 		B27F2DD52C6375120022743E /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		B27F2DD72C6394010022743E /* MoodSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodSheetView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				B27F2DD32C6374FD0022743E /* MoodList.swift */,
+				B27F2DD72C6394010022743E /* MoodSheetView.swift */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -167,6 +170,7 @@
 				B27F2DD22C6374DF0022743E /* Mood.swift in Sources */,
 				B27F2DC22C636EAE0022743E /* ContentView.swift in Sources */,
 				B27F2DC02C636EAE0022743E /* MoodyApp.swift in Sources */,
+				B27F2DD82C6394010022743E /* MoodSheetView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

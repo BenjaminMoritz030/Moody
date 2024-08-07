@@ -9,7 +9,8 @@ import Foundation
 
 struct Mood: Identifiable {
     let id = UUID()
-    var date: Date
-    var mood: String
-    var note: String
+    let date: Date
+    let mood: String
+    let note: String
 }
+
