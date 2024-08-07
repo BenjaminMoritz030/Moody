@@ -24,15 +24,19 @@ struct MoodSheetView: View {
             Divider()
             
             ForEach(moods, id: \.self) { mood in
-                Button(action: {
-                    selectedMood = mood
-                }) {
-                    Text(mood)
-                        .padding()
-                        .background(selectedMood == mood ? .green : .gray)
-                }
-                .foregroundColor(.black)
-            }
+                    HStack {
+                      Toggle(isOn: Binding(
+                        get: { selectedMood == mood },
+                        set: { isSelected in
+                          selectedMood = isSelected ? mood : nil
+                        }
+                      )) {
+                        Text(mood)
+                          .padding()
+                      }
+                    }
+                    .padding(.horizontal)
+                  }
             
             Divider()
             
