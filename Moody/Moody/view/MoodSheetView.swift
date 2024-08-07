@@ -60,13 +60,14 @@ struct MoodSheetView: View {
             .disabled(selectedMood == nil)
             
             Button(action: {
-                selectedMood = nil
-            }) {
-                Text("Abbrechen")
-                    .padding()
-                    .foregroundColor(.red)
-            }
-        }
+                    selectedMood = nil
+                    showingMoodSheet = false // Close the sheet when "Abbrechen" is clicked
+                  }) {
+                    Text("Abbrechen")
+                      .padding()
+                      .foregroundColor(.red)
+                  }
+                }
         .padding()
     }
 }
