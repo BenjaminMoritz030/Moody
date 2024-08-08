@@ -16,59 +16,61 @@ struct MoodSheetView: View {
     let moods = ["😄 Sehr gut", "😊 Gut", "😐 Neutral", "😕 Schlecht", "😢 Sehr schlecht"]
     
     var body: some View {
-        VStack {
-            Text("Wähle deine Stimmung aus:")
-                .font(.headline)
-                .padding()
-            
-            Divider()
-            
-            ForEach(moods, id: \.self) { mood in
+        ZStack {
+            VStack {
+                Text("Wähle deine Stimmung aus:")
+                    .font(.headline)
+                    .padding()
+                
+                Divider()
+                
+                ForEach(moods, id: \.self) { mood in
                     HStack {
-                      Toggle(isOn: Binding(
-                        get: { selectedMood == mood },
-                        set: { isSelected in
-                          selectedMood = isSelected ? mood : nil
+                        Toggle(isOn: Binding(
+                            get: { selectedMood == mood },
+                            set: { isSelected in
+                                selectedMood = isSelected ? mood : nil
+                            }
+                        )) {
+                            Text(mood)
+                                .padding()
                         }
-                      )) {
-                        Text(mood)
-                          .padding()
-                      }
                     }
                     .padding(.horizontal)
-                  }
-            
-            Divider()
-            
-            TextField("Notiz hinzufügen", text: $note)
-                .padding()
-            
-            Button(action: {
-                if let selectedMood = selectedMood {
-                    viewModel.addMood(mood: selectedMood, note: note)
                 }
-                selectedMood = nil
-                showingMoodSheet = false
-            }) {
-                Text("Speichern")
+                
+                Divider()
+                
+                TextField("Notiz hinzufügen", text: $note)
                     .padding()
-                    .foregroundColor(.white)
-                    .background(selectedMood != nil ? Color.blue : Color.gray)
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-            }
-            .disabled(selectedMood == nil)
-            
-            Button(action: {
+                
+                Button(action: {
+                    if let selectedMood = selectedMood {
+                        viewModel.addMood(mood: selectedMood, note: note)
+                    }
+                    selectedMood = nil
+                    showingMoodSheet = false
+                }) {
+                    Text("Speichern")
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(selectedMood != nil ? Color.blue : Color.gray)
+                        .cornerRadius(10)
+                        .padding(.horizontal)
+                }
+                .disabled(selectedMood == nil)
+                
+                Button(action: {
                     selectedMood = nil
                     showingMoodSheet = false // Close the sheet when "Abbrechen" is clicked
-                  }) {
+                }) {
                     Text("Abbrechen")
-                      .padding()
-                      .foregroundColor(.red)
-                  }
+                        .padding()
+                        .foregroundColor(.red)
                 }
-        .padding()
+            }
+            .padding()
+        }
     }
 }
 

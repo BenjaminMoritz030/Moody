@@ -15,32 +15,55 @@ struct MoodList: View {
     
     var body: some View {
         NavigationView {
-            VStack {
-                List(viewModel.entries) { entry in
-                    VStack(alignment: .leading) {
-                        Text("\(formattedDate(from: entry.date))")
-                            .font(.headline)
-                        Text("Stimmung: \(entry.mood)")
-                        Text("Notiz: \(entry.note)")
+            ZStack {
+                // Background Gradient
+                LinearGradient(
+                    gradient: Gradient(colors: [Color.purple, Color.blue]),
+                    startPoint: .topLeading,
+                    endPoint: .bottomTrailing
+                )
+                .edgesIgnoringSafeArea(.all)
+                VStack {
+                    Image("logo-8keit")
+                    
+                    List(viewModel.entries) { entry in
+                        HStack {
+                            
+                            Spacer()
+                            
+                            VStack(alignment: .leading, spacing: 8) {
+                                HStack {
+                                    Text("\(formattedDate(from: entry.date))")
+                                        .font(.headline)
+                                    Text("Stimmung: \(entry.mood)")
+                                    Text("Notiz: \(entry.note)")
+                                }
+                                .padding()
+                                .background(Color.cyan)
+                                .cornerRadius(8)
+                            }
+                            
+                            Spacer()
+                        }
+                        .listRowBackground(Color.clear) // delete bg
                     }
+                    .listStyle(PlainListStyle())
+                    
+                    Button(action: {
+                        showingMoodSheet = true
+                    }) {
+                        Text("Neuer Eintrag")
+                            .padding()
+                            .background(Color.cyan)
+                            .foregroundColor(.white)
+                            .cornerRadius(8)
+                    }
+                    .sheet(isPresented: $showingMoodSheet) {
+                        MoodSheetView(selectedMood: $selectedMood, showingMoodSheet: $showingMoodSheet, note: $note, viewModel: viewModel)
+                    }
+                    .padding()
                 }
-                .listStyle(PlainListStyle())
-                
-                Button(action: {
-                    showingMoodSheet = true
-                }) {
-                    Text("Neuer Eintrag")
-                        .padding()
-                        .background(Color.blue)
-                        .foregroundColor(.white)
-                        .cornerRadius(8)
-                }
-                .sheet(isPresented: $showingMoodSheet) {
-                    MoodSheetView(selectedMood: $selectedMood, showingMoodSheet: $showingMoodSheet, note: $note, viewModel: viewModel)
-                }
-                .padding()
             }
-            .navigationTitle("Mood Tracker")
         }
     }
     
