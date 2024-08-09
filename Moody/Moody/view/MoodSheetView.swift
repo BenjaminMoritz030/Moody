@@ -45,11 +45,14 @@ struct MoodSheetView: View {
                     .padding()
                 
                 Button(action: {
-                    if let selectedMood = selectedMood {
-                        viewModel.addMood(mood: selectedMood, note: note)
+                    withAnimation(.bouncy(duration: 10)) {
+                        if let selectedMood = selectedMood {
+                            viewModel.addMood(mood: selectedMood, note: note)
+                        }
+                        selectedMood = nil
+                        showingMoodSheet = false
                     }
-                    selectedMood = nil
-                    showingMoodSheet = false
+                    
                 }) {
                     Text("Speichern")
                         .padding()
