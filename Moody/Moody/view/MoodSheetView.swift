@@ -24,20 +24,14 @@ struct MoodSheetView: View {
                 
                 Divider()
                 
-                ForEach(moods, id: \.self) { mood in
-                    HStack {
-                        Toggle(isOn: Binding(
-                            get: { selectedMood == mood },
-                            set: { isSelected in
-                                selectedMood = isSelected ? mood : nil
-                            }
-                        )) {
+                Picker("Stimmung", selection: $selectedMood) {
+                          ForEach(moods, id: \.self) { mood in
                             Text(mood)
-                                .padding()
+                              .tag(mood as String?)
+                          }
                         }
-                    }
-                    .padding(.horizontal)
-                }
+                        .pickerStyle(WheelPickerStyle())
+                        .padding(.horizontal)
                 
                 Divider()
                 
